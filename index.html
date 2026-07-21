@@ -1483,8 +1483,47 @@ border-radius:10px; border:1px solid #ccc; font-size:15px;"><br>
 Tem alguma deficiência?
 </p>
 <p class="question_text question3">
-Introduza a data de nascimento
-<input type="text" name="_name" placeholder="DD/MM/YYYY"><br/>
+<label><strong>Data de Nascimento:</strong></label>
+
+<select id="day"></select>
+<select id="month"></select>
+<select id="year"></select>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+
+  // Dia
+  const daySelect = document.getElementById("day");
+  daySelect.innerHTML = "<option value=''>Dia</option>";
+  for (let i = 1; i <= 31; i++) {
+    let option = new Option(i, i);
+    daySelect.add(option);
+  }
+
+  // Mês
+  const monthSelect = document.getElementById("month");
+  const months = [
+    "Mês","Janeiro","Fevereiro","Março","Abril","Maio","Junho",
+    "Julho","Agosto","Setembro","Outubro","Novembro","Dezembro"
+  ];
+
+  months.forEach((month, index) => {
+    let option = new Option(month, index === 0 ? "" : month);
+    monthSelect.add(option);
+  });
+
+  // Ano
+  const yearSelect = document.getElementById("year");
+  yearSelect.innerHTML = "<option value=''>Ano</option>";
+  const currentYear = new Date().getFullYear();
+
+  for (let y = currentYear; y >= 1950; y--) {
+    let option = new Option(y, y);
+    yearSelect.add(option);
+  }
+
+});
+</script><br/>
 <select style="width: 260px; padding: 10px; border-radius: 8px; border: 1px solid #ccc; font-size: 15px; background-color: #f8f9fa; color: #333; box-shadow: 0 1px 3px rgba(0,0,0,0.1);">
 <option selected disabled>Selecione a sua província</option>
 <option value="bengo">Bengo</option>
@@ -1588,7 +1627,7 @@ font-weight:900;
 color:#0b7d3e;
 box-shadow:0 6px 16px rgba(0,0,0,0.12);
 ">
-👋 OLÁ, ${fullName}
+OLÁ, ${fullName}
 </div>
 `;
 });
